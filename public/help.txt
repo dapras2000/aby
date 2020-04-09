@@ -1,0 +1,138 @@
+composer require laravel/ui
+
+php artisan ui vue --auth
+======================================
+composer require yajra/laravel-datatables-oracle
+
+After that you need to set providers and alias.
+
+config/app.php
+
+.....
+'providers' => [
+	....
+	Yajra\DataTables\DataTablesServiceProvider::class,
+]
+'aliases' => [
+	....
+	'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+]
+.....
+use DataTables;
+======================================
+composer require ramsey/uuid
+Using ramsey/uuid
+After installing ramsey/uuid, the quickest way to get up-and-running is to use the static generation methods.
+
+use Ramsey\Uuid\Uuid;
+
+$uuid = Uuid::uuid4();
+=================================
+"autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        },
+        "classmap": [
+            "database/seeds",
+            "database/factories"
+        ],
+        "files":[
+            "app/Helpers/TanggalIndonesia.php",
+            "app/Helpers/FormatUang.php",
+            "app/Helpers/AngkaTerbilang.php"
+
+        ]
+    },
+
+    ===> composer dump-autoload
+    ==============================================
+    composer require milon/barcode
+    =============================================
+    composer require barryvdh/laravel-dompdf
+    'providers' => [
+	....
+	Barryvdh\DomPDF\ServiceProvider::class,
+],
+
+  
+'aliases' => [
+	....
+	'PDF' => Barryvdh\DomPDF\Facade::class,
+]
+
+==========================
+<?php
+
+namespace App\Providers;
+
+use Illuminate\Support\ServiceProvider;
+//danang
+use Carbon\Carbon; 
+
+class AppServiceProvider extends ServiceProvider
+{
+    /**
+     * Register any application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        //
+    }
+
+    /**
+     * Bootstrap any application services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        config(['app.locale' => 'id']);
+        Carbon::setLocale('id');
+        date_default_timezone_set('Asia/Jakarta');
+    }
+}
+
+app/config.php
+
+    |--------------------------------------------------------------------------
+    | Application Timezone
+    |--------------------------------------------------------------------------
+    |
+    | Here you may specify the default timezone for your application, which
+    | will be used by the PHP date and date-time functions. We have gone
+    | ahead and set this to a sensible default for you out of the box.
+    |
+    */
+
+    //'timezone' => 'UTC',
+    'timezone' => 'Asia/Jakarta',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Application Locale Configuration
+    |--------------------------------------------------------------------------
+    |
+    | The application locale determines the default locale that will be used
+    | by the translation service provider. You are free to set this value
+    | to any of the locales which will be supported by the application.
+    |
+    */
+
+    //'locale' => 'en',
+    'locale' => 'id',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Application Fallback Locale
+    |--------------------------------------------------------------------------
+    |
+    | The fallback locale determines the locale to use when the current one
+    | is not available. You may change the value to correspond to any of
+    | the language folders that are provided through your application.
+    |
+    */
+
+    //'fallback_locale' => 'en',
+    'fallback_locale' => 'id_ID',

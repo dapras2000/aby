@@ -125,7 +125,7 @@ app/config.php
 
     /*
     |--------------------------------------------------------------------------
-    | Application Fallback Locale
+    | Application Fallback Locale s
     |--------------------------------------------------------------------------
     |
     | The fallback locale determines the locale to use when the current one

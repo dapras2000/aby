@@ -91,6 +91,9 @@ Route::group(['middleware'=>'auth'],function(){
         Route::get('laporanpengeluaran', 'LaporanPengeluaranController@index')->name('laporanpengeluaran.index');
         Route::get('laporanpengeluaran/data/{awal}/{akhir}', 'LaporanPengeluaranController@listData')->name('laporanpengeluaran.data');         
 
+        Route::get('laporanlaba', 'LaporanLabaController@index')->name('laporanlaba.index');
+        Route::get('laporanlaba/data/{awal}/{akhir}', 'LaporanLabaController@listData')->name('laporanlaba.data');         
+
 });
 
 Auth::routes();

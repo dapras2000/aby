@@ -38,7 +38,7 @@ class PenjualanController extends Controller
      foreach($penjualan as $list){
        $no ++;
        $row = array();
-       $row[] = $no;
+       $row[] = $no.'.';
        $row[] = tanggal_indonesia(substr($list->tanggal, 0, 10), false);
        $row[] = $list->nama;
        $row[] = $list->total_item;

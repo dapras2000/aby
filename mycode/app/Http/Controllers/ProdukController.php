@@ -31,7 +31,7 @@ class ProdukController extends Controller
             $no ++;
             $row = array();
             $row[] = "<input type='checkbox' name='id[]'' value='".$list->id_produk."'>";
-            $row[] = $no;
+            $row[] = $no.'.';
             $row[] = $list->kode_produk;
             $row[] = $list->nama_produk;
             $row[] = $list->nama_kategori;

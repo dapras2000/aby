@@ -107,7 +107,7 @@ $(function(){
                     return 'Produk' + n;
                 },
             exportOptions: {
-                    columns: [ 1, 2,3,4,5,6,7,8,9 ]
+                    columns: [ 2,3,4,5,6,7,8,9 ]
                 },
             messageTop: 'Data Produk',
             messageBottom: null,
@@ -115,15 +115,16 @@ $(function(){
         {
           extend: 'print',
           text : 'Print',
+          title :'',
           filename: function(){
                     var d = new Date();
                     var n = d.getTime();
                     return 'Produk' + n;
                 },
             exportOptions: {
-                    columns: [ 1, 2,3,4,5,6,7,8,9 ]
+                    columns: [ 1,3,4,5,6,7,8,9 ]
                 },
-            messageTop: 'Data Produk',
+            messageTop: '<h3>Data Produk</h3>',
             messageBottom: null,
         },
       ],

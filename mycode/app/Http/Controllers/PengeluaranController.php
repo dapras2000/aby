@@ -23,7 +23,7 @@ class PengeluaranController extends Controller
       foreach($pengeluaran as $list){
          $no ++;
          $row = array();
-         $row[] = $no;
+         $row[] = $no.'.';
          $row[] = tanggal_indonesia(substr($list->created_at, 0, 10), false);
          $row[] = $list->jenis_pengeluaran;
          $row[] = "Rp. ".format_uang($list->nominal);
@@ -32,7 +32,9 @@ class PengeluaranController extends Controller
                     <a onclick="deleteData(\''.$list->id_pengeluaran.'\')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a></div>';
          $data[] = $row;
       }
-
+      //$output = array("data" => $data);
+          
+      //return response()->json($output);
       return Datatables::of($data)->escapeColumns([])->make(true);
     }
 

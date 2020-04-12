@@ -18,7 +18,7 @@
       </div>
       <div class="box-body">  
 
-<table class="table table-striped">
+<table id="tablepengeluaran" class="table table-striped">
 <thead>
    <tr>
       <th width="30">No</th>
@@ -29,6 +29,14 @@
    </tr>
 </thead>
 <tbody></tbody>
+<tfoot>
+      <tr>
+       <th>Total</th>
+       <th></th>
+       <th></th>
+       <th></th>
+      </tr>
+     </tfoot>
 </table>
 
       </div>
@@ -41,20 +49,53 @@
 
 @section('script')
 <script type="text/javascript">
+function currencyFormat(num) {
+  return '' + num.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
+}
 var table, save_method;
 $(function(){
-   table = $('.table').DataTable({
+   table = $('#tablepengeluaran').DataTable({
      "processing" : true,
      "ajax" : {
        "url" : "{{ route('pengeluaran.data') }}",
        "type" : "GET"
      },
+     "footerCallback": function ( row, data, start, end, display ) {
+            var api = this.api(), data;
+ 
+            // Remove the formatting to get integer data for summation
+            var intVal = function ( i ) {
+                return typeof i === 'string' ?
+                    i.replace(/[\$,Rp.,]/g, '')*1 :
+                    typeof i === 'number' ?
+                        i : 0;
+            };
+ 
+            // Total over all pages
+            total = api
+                .column( 3 )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+ 
+            // Total over this page
+            pageTotal = api
+                .column( 3, { page: 'current'} )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+            // Update footer
+            $( api.column( 3 ).footer() ).html('Rp. '+currencyFormat(pageTotal));
+        },
      "dom": 'Bfrtip',
       //"buttons": ['copy', 'csv', 'excel', 'pdf', 'print']
       "buttons": [
         {
           extend: 'csv',
           text : 'CSV',
+          title : '',
           filename: function(){
                     var d = new Date();
                     var n = d.getTime();
@@ -63,12 +104,14 @@ $(function(){
             exportOptions: {
                     columns: [ 0,1,2,3 ]
                 },
-            messageTop: 'Data Pengeluaran',
-            messageBottom: null,
+            messageTop: '<h3>Data Pengeluaran</h3>',
+            messageBottom: null,            
+            footer: true,
         },
         {
           extend: 'excel',
           text : 'Excel',
+          title : '',
           filename: function(){
                     var d = new Date();
                     var n = d.getTime();
@@ -77,12 +120,14 @@ $(function(){
             exportOptions: {
                     columns: [ 0,1,2,3 ]
                 },
-            messageTop: 'Data Pengeluaran',
+            messageTop: '<h3>Data Pengeluaran</h3>',
             messageBottom: null,
+            footer: true,
         },
         {
           extend: 'pdf',
           text : 'PDF',
+          title : '',
           filename: function(){
                     var d = new Date();
                     var n = d.getTime();
@@ -91,12 +136,14 @@ $(function(){
             exportOptions: {
                     columns: [ 0,1,2,3 ]
                 },
-            messageTop: 'Data Pengeluaran',
+            messageTop: '<h3>Data Pengeluaran</h3>',
             messageBottom: null,
+            footer: true,
         },
         {
           extend: 'print',
           text : 'Print',
+          title : '',
           filename: function(){
                     var d = new Date();
                     var n = d.getTime();
@@ -105,8 +152,9 @@ $(function(){
             exportOptions: {
                     columns: [ 0,1,2,3 ]
                 },
-            messageTop: 'Data Pengeluaran',
+            messageTop: '<h3>Data Pengeluaran</h3>',
             messageBottom: null,
+            footer: true,
         },
       ],
    }); 

@@ -55,20 +55,22 @@ $(function(){
         {
           extend: 'csv',
           text : 'CSV',
+          title : '',
           filename: function(){
                     var d = new Date();
                     var n = d.getTime();
-                    return 'Member' + n;
+                    return 'Supplier' + n;
                 },
             exportOptions: {
                     columns: [ 0,1,2,3 ]
                 },
-            messageTop: 'Data Supplier',
+            messageTop: '<h3>Data Supplier</h3>',
             messageBottom: null,
         },
         {
           extend: 'excel',
           text : 'Excel',
+          title : '',
           filename: function(){
                     var d = new Date();
                     var n = d.getTime();
@@ -77,12 +79,13 @@ $(function(){
             exportOptions: {
                     columns: [ 0,1,2,3 ]
                 },
-            messageTop: 'Data Supplier',
+            messageTop: '<h3>Data Supplier</h3>',
             messageBottom: null,
         },
         {
           extend: 'pdf',
           text : 'PDF',
+          title : '',
           filename: function(){
                     var d = new Date();
                     var n = d.getTime();
@@ -91,12 +94,13 @@ $(function(){
             exportOptions: {
                     columns: [ 0,1,2,3 ]
                 },
-            messageTop: 'Data Supplier',
+            messageTop: '<h3>Data Supplier</h3>',
             messageBottom: null,
         },
         {
           extend: 'print',
           text : 'Print',
+          title : '',
           filename: function(){
                     var d = new Date();
                     var n = d.getTime();
@@ -105,7 +109,7 @@ $(function(){
             exportOptions: {
                     columns: [ 0,1,2,3 ]
                 },
-            messageTop: 'Data Supplier',
+            messageTop: '<h3>Data Supplier</h3>',
             messageBottom: null,
         },
       ],

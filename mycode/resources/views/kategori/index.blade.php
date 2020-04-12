@@ -49,12 +49,14 @@ $(function(){
        "url" : "{{ route('kategori.data') }}",
        "type" : "GET"
      },
+     
      "dom": 'Bfrtip',
       //"buttons": ['copy', 'csv', 'excel', 'pdf', 'print']
       "buttons": [
         {
           extend: 'csv',
           text : 'CSV',
+          title   : '',
           filename: function(){
                     var d = new Date();
                     var n = d.getTime();
@@ -63,12 +65,13 @@ $(function(){
             exportOptions: {
                     columns: [ 0, 1 ]
                 },
-            messageTop: 'Data Kategori',
+            messageTop: '<h3>Data Kategori</h3>',
             messageBottom: null,
         },
         {
           extend: 'excel',
           text : 'Excel',
+          title   : '',
           filename: function(){
                     var d = new Date();
                     var n = d.getTime();
@@ -77,12 +80,13 @@ $(function(){
             exportOptions: {
                     columns: [ 0, 1 ]
                 },
-            messageTop: 'Data Kategori',
+            messageTop: '<h3>Data Kategori</h3>',
             messageBottom: null,
         },
         {
             extend: 'pdfHtml5',
             text : 'PDF',
+            title   : '',
             filename: function(){
                       var d = new Date();
                       var n = d.getTime();
@@ -91,7 +95,7 @@ $(function(){
             exportOptions: {
                     columns: [ 0, 1 ]
                 },
-            messageTop: 'Data Kategori',
+            messageTop: '<h3>Data Kategori</h3>',
             messageBottom: null,
             //orientation: 'landscape',
             //pageSize: 'LEGAL'
@@ -99,6 +103,7 @@ $(function(){
         {
             extend: 'print',
             text : 'Print',
+            title   : '',
             filename: function(){
                       var d = new Date();
                       var n = d.getTime();

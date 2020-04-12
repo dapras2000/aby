@@ -30,6 +30,19 @@
    </tr>
 </thead>
 <tbody></tbody>
+<tfoot>
+      <tr>
+       <th>Total</th>
+       <th></th>
+       <th></th>
+       <th></th>
+       <th></th>
+       <th></th>
+       <th></th>
+       <th></th>
+       <th></th>
+      </tr>
+     </tfoot>
 </table>
 
       </div>
@@ -42,55 +55,61 @@
 
 @section('script')
 <script type="text/javascript">
+function currencyFormat(num) {
+  return '' + num.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
+}
 var table, save_method, table1;
-// <script type="text/javascript"> 
-//     $(document).ready(function () {
-//         $('#table-datatables').DataTable({
-//             dom: 'Bfrtip',
-//             buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
-//         });
-//     });
-// script>
-
 $(function(){
    table = $('#tabel-penjualan').DataTable({
-    // "footerCallback": function ( row, data, start, end, display ) {
-    //         var api = this.api(), data;
- 
-    //         // converting to interger to find total
-    //         var intVal = function ( i ) {
-    //             return typeof i === 'string' ?
-    //                 i.replace(/[\$,]/g, '')*1 :
-    //                 typeof i === 'number' ?
-    //                     i : 0;
-    //         };
- 
-    //         // computing column Total of the complete result 
-    //         var monTotal = api
-    //             .column( 4 )
-    //             .data()
-    //             .reduce( function (a, b) {
-    //                 return intVal(a) + intVal(b);
-    //             }, 0 );
-			
-				
-    //         // Update footer by showing the total with the reference of the column index 
-	  //   $( api.column( 0 ).footer() ).html('Total');
-    //         $( api.column( 4 ).footer() ).html(monTotal);
-    //     },
-
      "processing" : true,
      "serverside" : true,
      "ajax" : {
        "url" : "{{ route('penjualan.data') }}",
        "type" : "GET"
      },     
+     "footerCallback": function ( row, data, start, end, display ) {
+            var api = this.api(), data; 
+            // Remove the formatting to get integer data for summation
+            var intVal = function ( i ) {
+                return typeof i === 'string' ?
+                    i.replace(/[\$,Rp.,]/g, '')*1 :
+                    typeof i === 'number' ?
+                        i : 0;
+            };
+ 
+            // Total over all pages
+            total = api
+                .column( 3,6 )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+ 
+            // Total over this page
+            pageTotal = api
+                .column( 3, { page: 'current'} )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+            pageTotal2 = api
+                .column( 6, { page: 'current'} )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+ 
+            // Update footer
+            $( api.column( 3 ).footer() ).html(pageTotal);
+            $( api.column( 6 ).footer() ).html('Rp. '+currencyFormat(pageTotal2));
+        },
      "dom": 'Bfrtip',
       //"buttons": ['copy', 'csv', 'excel', 'pdf', 'print']
       "buttons": [
         {
           extend: 'csv',
           text : 'CSV',
+          title : '',
           filename: function(){
                     var d = new Date();
                     var n = d.getTime();
@@ -99,12 +118,14 @@ $(function(){
             exportOptions: {
                 columns: [ 0,1,2,3,4,5,6,7 ]
                 },
-            messageTop: 'Data Penjualan',
+            messageTop: '<h3>Data Penjualan</h3>',
             messageBottom: null,
+            footer: true,
         },
         {
           extend: 'excel',
           text : 'Excel',
+          title : '',
           filename: function(){
                     var d = new Date();
                     var n = d.getTime();
@@ -113,12 +134,14 @@ $(function(){
             exportOptions: {
               columns: [ 0,1,2,3,4,5,6,7 ]
                 },
-            messageTop: 'Data Penjualan',
+            messageTop: '<h3>Data Penjualan</h3>',
             messageBottom: null,
+            footer: true,
         },
         {
           extend: 'pdf',
           text : 'PDF',
+          title : '',
           filename: function(){
                     var d = new Date();
                     var n = d.getTime();
@@ -127,12 +150,14 @@ $(function(){
             exportOptions: {
               columns: [ 0,1,2,3,4,5,6,7 ]
                 },
-            messageTop: 'Data Penjualan',
+            messageTop: '<h3>Data Penjualan</h3>',
             messageBottom: null,
+            footer: true,
         },
         {
           extend: 'print',
           text : 'Print',
+          title : '',
           filename: function(){
                     var d = new Date();
                     var n = d.getTime();
@@ -141,8 +166,9 @@ $(function(){
             exportOptions: {
                     columns: [ 0,1,2,3,4,5,6,7 ]
                 },
-            messageTop: 'Data Penjualan',
+            messageTop: '<h3>Data Penjualan</h3>',
             messageBottom: null,
+            footer: true,
         },
       ],
    }); 

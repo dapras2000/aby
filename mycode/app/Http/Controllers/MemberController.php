@@ -25,7 +25,7 @@ class MemberController extends Controller
        $no ++;
        $row = array();
        $row[] = '<input type="checkbox" name="id[]" value="\''.$list->id_member.'\'">';
-       $row[] = $no;
+       $row[] = $no.'.';
        $row[] = $list->kode_member;
        $row[] = $list->nama;
        $row[] = $list->diskon;

@@ -30,7 +30,7 @@ class KategoriController extends Controller
      foreach($kategori as $list){
        $no ++;
        $row = array();
-       $row[] = $no;
+       $row[] = $no.'.';
        $row[] = $list->nama_kategori;
        $row[] = '<div class="btn-group">
                <a onclick="editForm(\''.$list->id_kategori.'\')" class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i></a>

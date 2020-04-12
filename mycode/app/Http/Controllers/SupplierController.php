@@ -25,7 +25,7 @@ class SupplierController extends Controller
      foreach($supplier as $list){
        $no ++;
        $row = array();
-       $row[] = $no;
+       $row[] = $no.'.';
        $row[] = $list->nama_supplier;
        $row[] = $list->alamat;
        $row[] = $list->telpon;

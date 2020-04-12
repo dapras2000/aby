@@ -53,7 +53,7 @@
   <div class="form-group">
     <label for="harga_beli" class="col-md-3 control-label">Harga Beli</label>
     <div class="col-md-3">
-      <input id="harga_beli" type="text" class="form-control" name="harga_beli" required>
+      <input id="harga_beli" type="number" class="form-control" name="harga_beli" required>
       <span class="help-block with-errors"></span>
     </div>
   </div>
@@ -69,7 +69,7 @@
   <div class="form-group">
     <label for="harga_jual" class="col-md-3 control-label">Harga Jual</label>
     <div class="col-md-3">
-      <input id="harga_jual" type="text" class="form-control" name="harga_jual" required>
+      <input id="harga_jual" type="number" class="form-control" name="harga_jual" required>
       <span class="help-block with-errors"></span>
     </div>
   </div>

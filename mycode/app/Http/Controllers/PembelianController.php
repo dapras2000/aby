@@ -30,10 +30,12 @@ class PembelianController extends Controller
         ->get();
      $no = 0;
      $data = array();
+     $total = 0;
+     $total_item = 0;
      foreach($pembelian as $list){
        $no ++;
        $row = array();
-       $row[] = $no;
+       $row[] = $no.'.';
        $row[] = tanggal_indonesia(substr($list->created_at, 0, 10), false);
        $row[] = $list->nama_supplier;
        $row[] = $list->total_item;
@@ -47,9 +49,12 @@ class PembelianController extends Controller
                <a onclick="printData(\''.$list->id_pembelian.'\')" class="btn btn-success btn-sm"><i class="fa fa-print"></i></a>
               </div>';
        $data[] = $row;
-     }
+       $total += $list->bayar;
+       $total_item += $list->jumlah;
+     }         
 
      $output = array("data" => $data);
+          
      return response()->json($output);
    }
 

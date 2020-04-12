@@ -52,6 +52,7 @@
     <label for="logo" class="col-md-2 control-label">Logo Perusahaan</label>
     <div class="col-md-4">
       <input id="logo" type="file" class="form-control" name="logo">
+      <input id="diskon_member" type="hidden" class="form-control" name="diskon_member"  required>
       <br><div class="tampil-logo"></div>
     </div>
   </div>
@@ -63,7 +64,7 @@
       <br><div class="tampil-kartu"></div>
     </div>
   </div>
--->
+
   <div class="form-group">
     <label for="diskon_member" class="col-md-2 control-label">Diskon Member (%)</label>
     <div class="col-md-2">
@@ -71,7 +72,6 @@
       <span class="help-block with-errors"></span>
     </div>
   </div>
-<!--
   <div class="form-group">
     <label for="tipe_nota" class="col-md-2 control-label">Tipe Nota</label>
     <div class="col-md-2">

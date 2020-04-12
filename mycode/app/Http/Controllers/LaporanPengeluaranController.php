@@ -8,7 +8,7 @@ use App\Models\Pengeluaran;
 
 use PDF;
 
-class LaporanController extends Controller
+class LaporanPengeluaranController extends Controller
 {
    public function index()
    {
@@ -16,7 +16,7 @@ class LaporanController extends Controller
      $pembelian = Pembelian::orderby('created_at','asc')->first();
      $awal = $pembelian->created_at;
      $akhir = date('Y-m-d');
-     return view('laporan.index', compact('awal', 'akhir')); 
+     return view('laporan.pengeluaran', compact('awal', 'akhir')); 
    }
 
    protected function getData($awal, $akhir){
@@ -28,21 +28,14 @@ class LaporanController extends Controller
        $tanggal = $awal;
        $awal = date('Y-m-d', strtotime("+1 day", strtotime($awal)));
 
-       $total_penjualan = Penjualan::where('created_at', 'LIKE', "$tanggal%")->sum('bayar');
-       $total_pembelian = Pembelian::where('created_at', 'LIKE', "$tanggal%")->sum('bayar');
        $total_pengeluaran = Pengeluaran::where('created_at', 'LIKE', "$tanggal%")->sum('nominal');
 
-       $pendapatan = $total_penjualan - $total_pembelian - $total_pengeluaran;
-       $total_pendapatan += $pendapatan;
 
        $no ++;
        $row = array();
        $row[] = $no.'.';
        $row[] = tanggal_indonesia($tanggal, false);
-       $row[] = format_uang($total_pembelian);
-       $row[] = format_uang($total_penjualan);       
        $row[] = format_uang($total_pengeluaran);
-       $row[] = format_uang($pendapatan);
        $data[] = $row;
      }
      //$data[] = array("", "", "", "", "Total Pendapatan", format_uang($total_pendapatan));
@@ -62,7 +55,7 @@ class LaporanController extends Controller
    {
      $awal = $request['awal'];
      $akhir = $request['akhir'];
-     return view('laporan.index', compact('awal', 'akhir')); 
+     return view('laporan.pembelian', compact('awal', 'akhir')); 
    }
 
    public function exportPDF($awal, $akhir){

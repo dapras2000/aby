@@ -129,7 +129,21 @@
         <li><a href="{{ route('pengeluaran.index') }}"><i class="fa fa-money"></i> <span>Pengeluaran</span></a></li>
         <li><a href="{{ route('penjualan.index') }}"><i class="fa fa-upload"></i> <span>Penjualan</span></a></li>
         <li><a href="{{ route('pembelian.index') }}"><i class="fa fa-download"></i> <span>Pembelian</span></a></li>
-        <li><a href="{{ route('laporan.index') }}"><i class="fa fa-file-pdf-o"></i> <span>Laporan</span></a></li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-table"></i> <span>Laporan</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">          
+            <li><a href="{{ route('laporanpembelian.index') }}"><i class="fa fa-file-pdf-o"></i> <span>Laporan Pembelian</span></a></li>
+            <li><a href="{{ route('laporanpenjualan.index') }}"><i class="fa fa-file-pdf-o"></i> <span>Laporan Penjualan</span></a></li>            
+            <li><a href="{{ route('laporanpengeluaran.index') }}"><i class="fa fa-file-pdf-o"></i> <span>Laporan Pengeluaran</span></a></li>  
+            <li><a href="{{ route('laporan.index') }}"><i class="fa fa-file-pdf-o"></i> <span>Laporan Umum</span></a></li>            
+          </ul>
+        </li>
+        
         <li><a href="{{ route('user.index') }}"><i class="fa fa-user"></i> <span>User</span></a></li>
         <li><a href="{{ route('setting.index') }}"><i class="fa fa-gears"></i> <span>Setting</span></a></li>
         <!--disni@else
@@ -138,6 +152,7 @@
         <li><a href="{{ route('penjualan.index') }}"><i class="fa fa-upload"></i> <span>Rekap Transaksi</span></a></li>
 
         @endif
+        
 
       </ul>
       <!-- /.sidebar-menu -->
@@ -193,6 +208,8 @@
 <script src="{{asset('AdminLTE/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
 <!-- bootstrap datepicker -->
 <script src="{{asset('AdminLTE/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"></script>
+
+
 <script src="{{asset('js/validator.min.js')}}"></script>
 
 <script src="{{asset('AdminLTE/bower_components/datatables-button/dataTables.buttons.min.js')}}"></script>

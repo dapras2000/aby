@@ -65,11 +65,11 @@
   <div class="col-md-4">
     <form class="form form-horizontal form-pembelian" method="post" action="{{  route('pembelian.store') }} ">
       {{ csrf_field() }}
-      <input type="text" name="idpembelian" id="idpembelian" value="{{ $idpembelian }}">
-      <input type="text" name="total" id="total">
-      <input type="text" name="totalitem" id="totalitem">
-      <input type="text" name="bayar" id="bayar">
-      <input type="text" name="diskon2" id="diskon2">
+      <input type="hidden" name="idpembelian" id="idpembelian" value="{{ $idpembelian }}">
+      <input type="hidden" name="total" id="total">
+      <input type="hidden" name="totalitem" id="totalitem">
+      <input type="hidden" name="bayar" id="bayar">
+      <input type="hidden" name="diskon2" id="diskon2">
 
       <div class="form-group">
         <label for="totalrp" class="col-md-4 control-label">Total</label>

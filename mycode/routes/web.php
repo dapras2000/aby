@@ -81,6 +81,16 @@ Route::group(['middleware'=>'auth'],function(){
         Route::post('laporan', 'LaporanController@refresh')->name('laporan.refresh');
         Route::get('laporan/data/{awal}/{akhir}', 'LaporanController@listData')->name('laporan.data'); 
         Route::get('laporan/pdf/{awal}/{akhir}', 'LaporanController@exportPDF');
+
+        Route::get('laporanpembelian', 'LaporanPembelianController@index')->name('laporanpembelian.index');
+        Route::get('laporanpembelian/data/{awal}/{akhir}', 'LaporanPembelianController@listData')->name('laporanpembelian.data'); 
+
+        Route::get('laporanpenjualan', 'LaporanPenjualanController@index')->name('laporanpenjualan.index');
+        Route::get('laporanpenjualan/data/{awal}/{akhir}', 'LaporanPenjualanController@listData')->name('laporanpenjualan.data'); 
+
+        Route::get('laporanpengeluaran', 'LaporanPengeluaranController@index')->name('laporanpengeluaran.index');
+        Route::get('laporanpengeluaran/data/{awal}/{akhir}', 'LaporanPengeluaranController@listData')->name('laporanpengeluaran.data');         
+
 });
 
 Auth::routes();

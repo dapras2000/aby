@@ -1,8 +1,7 @@
-
 @extends('layouts.app')
 
 @section('title')
-  Laporan Umum 
+  Laporan Pengeluaran 
 @endsection
 
 @section('breadcrumb')
@@ -18,7 +17,7 @@
         <!--<a onclick="periodeForm()" class="btn btn-success"><i class="fa fa-plus-circle"></i> Ubah Periode</a>
         <a href="laporan/pdf/{{$awal}}/{{$akhir}}" target="_blank" class="btn btn-info"><i class="fa fa-file-pdf-o"></i> Export PDF</a>
         <br>--><h3>
-        <span id="laporan">Laporan Umum <span id="tgl1">{{ tanggal_indonesia($awal, false) }}</span> s/d <span id="tgl2">{{ tanggal_indonesia($akhir, false) }}</span></span>
+        <span id="laporan">Laporan Pengeluaran <span id="tgl1">{{ tanggal_indonesia($awal, false) }}</span> s/d <span id="tgl2">{{ tanggal_indonesia($akhir, false) }}</span></span>
         </h3>
       </div>
       
@@ -37,19 +36,13 @@
                 <tr>
                     <th width="5%">No</th>
                     <th width="10%">Tanggal</th>
-                    <th width="30%">Pembelian</th>
-                    <th width="30%">Penjualan</th>
                     <th width="30%">Pengeluaran</th>
-                    <th width="30%">Pendapatan</th>
                 </tr>
               </thead>
               <tbody></tbody>
               <tfoot>
                 <tr>
                 <th>Total</th>
-                <th></th>
-                <th></th>
-                <th></th>
                 <th></th>
                 <th></th>
                 </tr>
@@ -87,7 +80,7 @@ $(function(){
       "processing" : true,
      "serverside" : true,
      "ajax" : {
-       "url" : "laporan/data/{{ $awal }}/{{ $akhir }}",
+       "url" : "laporanpengeluaran/data/{{ $awal }}/{{ $akhir }}",
        "type" : "GET"
      },          
      "footerCallback": function ( row, data, start, end, display ) {
@@ -101,7 +94,7 @@ $(function(){
             };
               // Total over all pages
             total = api
-                .column( 2,3,4,5 )
+                .column( 2 )
                 .data()
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
@@ -114,32 +107,8 @@ $(function(){
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
                 }, 0 );
-
-                pageTotal2 = api
-                .column( 3, { page: 'current'} )
-                .data()
-                .reduce( function (a, b) {
-                    return intVal(a) + intVal(b);
-                }, 0 );
-
-                pageTotal3 = api
-                .column( 4, { page: 'current'} )
-                .data()
-                .reduce( function (a, b) {
-                    return intVal(a) + intVal(b);
-                }, 0 );
-                
-                pageTotal4 = api
-                .column( 5, { page: 'current'} )
-                .data()
-                .reduce( function (a, b) {
-                    return intVal(a) + intVal(b);
-                }, 0 );
            
           $( api.column( 2 ).footer() ).html('Rp. '+currencyFormat(pageTotal));
-          $( api.column( 3 ).footer() ).html('Rp. '+currencyFormat(pageTotal2));
-          $( api.column( 4 ).footer() ).html('Rp. '+currencyFormat(pageTotal3));
-          $( api.column( 5 ).footer() ).html('Rp. '+currencyFormat(pageTotal4));
             
         },
      "dom": 'Bfrtip',
@@ -152,7 +121,7 @@ $(function(){
           filename: function(){
                     var d = new Date();
                     var n = d.getTime();
-                    return 'Laporan Umum' + n;
+                    return 'Laporan Pengeluaran' + n;
                 },
             exportOptions: {
                     columns: [ 0, 1,2 ]
@@ -171,7 +140,7 @@ $(function(){
           filename: function(){
                     var d = new Date();
                     var n = d.getTime();
-                    return 'Laporan Umum' + n;
+                    return 'Laporan Pengeluaran' + n;
                 },
             exportOptions: {
                     columns: [ 0, 1,2 ]
@@ -190,7 +159,7 @@ $(function(){
             filename: function(){
                       var d = new Date();
                       var n = d.getTime();
-                      return 'Laporan Umum' + n;
+                      return 'Laporan Pengeluaran' + n;
                 },
             exportOptions: {
                     columns: [ 0, 1,2 ]
@@ -211,7 +180,7 @@ $(function(){
             filename: function(){
                       var d = new Date();
                       var n = d.getTime();
-                      return 'Laporan Umum' + n;
+                      return 'Laporan Pengeluaran' + n;
                 },
             exportOptions: {
                     columns: [ 0, 1,2 ]

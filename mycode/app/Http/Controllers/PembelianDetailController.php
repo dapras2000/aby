@@ -32,7 +32,7 @@ class PembelianDetailController extends Controller
      foreach($detail as $list){
        $no ++;
        $row = array();
-       $row[] = $no;
+       $row[] = $no.'.';
        $row[] = $list->kode_produk;
        $row[] = $list->nama_produk;
        $row[] = "Rp. ".format_uang($list->harga_beli);

@@ -8,15 +8,13 @@ use App\Models\Pengeluaran;
 
 use PDF;
 
-class LaporanController extends Controller
+class LaporanPembelianController extends Controller
 {
    public function index()
    {
-     //$awal = date('Y-m-d', mktime(0,0,0, date('m'), 1, date('Y')));
-     $pembelian = Pembelian::orderby('created_at','asc')->first();
-     $awal = $pembelian->created_at;
+     $awal = date('Y-m-d', mktime(0,0,0, date('m'), 1, date('Y')));
      $akhir = date('Y-m-d');
-     return view('laporan.index', compact('awal', 'akhir')); 
+     return view('laporan.pembelian', compact('awal', 'akhir')); 
    }
 
    protected function getData($awal, $akhir){
@@ -37,10 +35,10 @@ class LaporanController extends Controller
 
        $no ++;
        $row = array();
-       $row[] = $no.'.';
+       $row[] = $no;
        $row[] = tanggal_indonesia($tanggal, false);
+       $row[] = format_uang($total_penjualan);
        $row[] = format_uang($total_pembelian);
-       $row[] = format_uang($total_penjualan);       
        $row[] = format_uang($total_pengeluaran);
        $row[] = format_uang($pendapatan);
        $data[] = $row;
@@ -62,7 +60,7 @@ class LaporanController extends Controller
    {
      $awal = $request['awal'];
      $akhir = $request['akhir'];
-     return view('laporan.index', compact('awal', 'akhir')); 
+     return view('laporan.pembelian', compact('awal', 'akhir')); 
    }
 
    public function exportPDF($awal, $akhir){

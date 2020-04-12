@@ -77,7 +77,7 @@ $(function(){
             exportOptions: {
                     columns: [ 1,2,3,4,5,6 ]
                 },
-            messageTop: '<h3>Data Member</h3>',
+            messageTop: 'Data Member',
             messageBottom: null,
         },
         {
@@ -106,7 +106,7 @@ $(function(){
             exportOptions: {
                     columns: [ 1,2,3,4,5,6 ]
                 },
-            messageTop: '<h3>Data Member</h3>',
+            messageTop: 'Data Member',
             messageBottom: null,
         },
         {

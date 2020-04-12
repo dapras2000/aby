@@ -124,7 +124,7 @@ $(function(){
             exportOptions: {
                 columns: [ 0,1,2,3,4,5,6 ]
                 },
-            messageTop: '<h3>Data Pembelian</h3>',
+            messageTop: 'Data Pembelian',
             messageBottom: null,
             footer: true,
         },
@@ -140,7 +140,7 @@ $(function(){
             exportOptions: {
               columns: [ 0,1,2,3,4,5,6 ]
                 },
-            messageTop: '<h3>Data Pembelian</h3>',
+            messageTop: 'Data Pembelian',
             messageBottom: null,
             footer: true,
         },
@@ -156,7 +156,7 @@ $(function(){
             exportOptions: {
               columns: [ 0,1,2,3,4,5,6 ]
                 },
-            messageTop: '<h3>Data Pembelian</h3>',
+            messageTop: 'Data Pembelian',
             messageBottom: null,
             footer: true,
         },

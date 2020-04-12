@@ -118,7 +118,7 @@ $(function(){
             exportOptions: {
                 columns: [ 0,1,2,3,4,5,6,7 ]
                 },
-            messageTop: '<h3>Data Penjualan</h3>',
+            messageTop: 'Data Penjualan',
             messageBottom: null,
             footer: true,
         },
@@ -134,7 +134,7 @@ $(function(){
             exportOptions: {
               columns: [ 0,1,2,3,4,5,6,7 ]
                 },
-            messageTop: '<h3>Data Penjualan</h3>',
+            messageTop: 'Data Penjualan',
             messageBottom: null,
             footer: true,
         },
@@ -150,7 +150,7 @@ $(function(){
             exportOptions: {
               columns: [ 0,1,2,3,4,5,6,7 ]
                 },
-            messageTop: '<h3>Data Penjualan</h3>',
+            messageTop: 'Data Penjualan',
             messageBottom: null,
             footer: true,
         },

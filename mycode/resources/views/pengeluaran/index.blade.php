@@ -104,7 +104,7 @@ $(function(){
             exportOptions: {
                     columns: [ 0,1,2,3 ]
                 },
-            messageTop: '<h3>Data Pengeluaran</h3>',
+            messageTop: 'Data Pengeluaran',
             messageBottom: null,            
             footer: true,
         },
@@ -120,7 +120,7 @@ $(function(){
             exportOptions: {
                     columns: [ 0,1,2,3 ]
                 },
-            messageTop: '<h3>Data Pengeluaran</h3>',
+            messageTop: 'Data Pengeluaran',
             messageBottom: null,
             footer: true,
         },
@@ -136,7 +136,7 @@ $(function(){
             exportOptions: {
                     columns: [ 0,1,2,3 ]
                 },
-            messageTop: '<h3>Data Pengeluaran</h3>',
+            messageTop: 'Data Pengeluaran',
             messageBottom: null,
             footer: true,
         },

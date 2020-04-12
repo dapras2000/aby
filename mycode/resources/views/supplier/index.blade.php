@@ -64,7 +64,7 @@ $(function(){
             exportOptions: {
                     columns: [ 0,1,2,3 ]
                 },
-            messageTop: '<h3>Data Supplier</h3>',
+            messageTop: 'Data Supplier',
             messageBottom: null,
         },
         {
@@ -79,7 +79,7 @@ $(function(){
             exportOptions: {
                     columns: [ 0,1,2,3 ]
                 },
-            messageTop: '<h3>Data Supplier</h3>',
+            messageTop: 'Data Supplier',
             messageBottom: null,
         },
         {
@@ -94,7 +94,7 @@ $(function(){
             exportOptions: {
                     columns: [ 0,1,2,3 ]
                 },
-            messageTop: '<h3>Data Supplier</h3>',
+            messageTop: 'Data Supplier',
             messageBottom: null,
         },
         {

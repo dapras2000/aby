@@ -65,7 +65,7 @@ $(function(){
             exportOptions: {
                     columns: [ 0, 1 ]
                 },
-            messageTop: '<h3>Data Kategori</h3>',
+            messageTop: 'Data Kategori',
             messageBottom: null,
         },
         {
@@ -80,7 +80,7 @@ $(function(){
             exportOptions: {
                     columns: [ 0, 1 ]
                 },
-            messageTop: '<h3>Data Kategori</h3>',
+            messageTop: 'Data Kategori',
             messageBottom: null,
         },
         {
@@ -95,7 +95,7 @@ $(function(){
             exportOptions: {
                     columns: [ 0, 1 ]
                 },
-            messageTop: '<h3>Data Kategori</h3>',
+            messageTop: 'Data Kategori',
             messageBottom: null,
             //orientation: 'landscape',
             //pageSize: 'LEGAL'

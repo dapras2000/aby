@@ -127,9 +127,9 @@ $(function(){
                     columns: [ 0, 1,2 ]
                 },
                 messageTop: function(){
-              var ttl = $('#laporan').html();
-              return '<h3>' + ttl + '</h3>'
-            },        
+              var ttl = 'Laporan Pembelian '+ $('#tgl1').html() + ' s/d ' + $('#tgl2').html();
+              return ttl
+            },     
             messageBottom: null,
             footer: true,
         },
@@ -146,9 +146,9 @@ $(function(){
                     columns: [ 0, 1,2 ]
                 },
                 messageTop: function(){
-              var ttl = $('#laporan').html();
-              return '<h3>' + ttl + '</h3>'
-            },
+              var ttl = 'Laporan Pembelian '+ $('#tgl1').html() + ' s/d ' + $('#tgl2').html();
+              return ttl
+            },    
             messageBottom: null,
             footer: true,
         },
@@ -165,9 +165,9 @@ $(function(){
                     columns: [ 0, 1,2 ]
                 },
                 messageTop: function(){
-              var ttl = $('#laporan').html();
-              return '<h3>' + ttl + '</h3>'
-            },
+              var ttl = 'Laporan Pembelian '+ $('#tgl1').html() + ' s/d ' + $('#tgl2').html();
+              return ttl
+            },    
             messageBottom: null,
             footer: true,
             //orientation: 'landscape',

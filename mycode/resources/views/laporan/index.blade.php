@@ -155,11 +155,11 @@ $(function(){
                     return 'Laporan Umum' + n;
                 },
             exportOptions: {
-                    columns: [ 0, 1,2 ]
+                    columns: [ 0,1,2,3,4,5 ]
                 },
                 messageTop: function(){
-              var ttl = $('#laporan').html();
-              return '<h3>' + ttl + '</h3>'
+              var ttl = 'Laporan Umum '+ $('#tgl1').html() + ' s/d ' + $('#tgl2').html();
+              return ttl
             },        
             messageBottom: null,
             footer: true,
@@ -174,11 +174,11 @@ $(function(){
                     return 'Laporan Umum' + n;
                 },
             exportOptions: {
-                    columns: [ 0, 1,2 ]
+                    columns: [ 0,1,2,3,4,5 ]
                 },
                 messageTop: function(){
-              var ttl = $('#laporan').html();
-              return '<h3>' + ttl + '</h3>'
+              var ttl = 'Laporan Umum '+ $('#tgl1').html() + ' s/d ' + $('#tgl2').html();
+              return ttl
             },
             messageBottom: null,
             footer: true,
@@ -193,11 +193,11 @@ $(function(){
                       return 'Laporan Umum' + n;
                 },
             exportOptions: {
-                    columns: [ 0, 1,2 ]
+                    columns: [ 0,1,2,3,4,5 ]
                 },
                 messageTop: function(){
-              var ttl = $('#laporan').html();
-              return '<h3>' + ttl + '</h3>'
+              var ttl = 'Laporan Umum '+ $('#tgl1').html() + ' s/d ' + $('#tgl2').html();
+              return ttl
             },
             messageBottom: null,
             footer: true,
@@ -214,7 +214,7 @@ $(function(){
                       return 'Laporan Umum' + n;
                 },
             exportOptions: {
-                    columns: [ 0, 1,2 ]
+                    columns: [ 0,1,2,3,4,5 ]
                 },
             messageTop: function(){
               var ttl = $('#laporan').html();

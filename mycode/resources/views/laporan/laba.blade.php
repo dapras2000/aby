@@ -1,7 +1,8 @@
+
 @extends('layouts.app')
 
 @section('title')
-  Laporan Penjualan 
+  Laporan Laba-Rugi 
 @endsection
 
 @section('breadcrumb')
@@ -17,7 +18,7 @@
         <!--<a onclick="periodeForm()" class="btn btn-success"><i class="fa fa-plus-circle"></i> Ubah Periode</a>
         <a href="laporan/pdf/{{$awal}}/{{$akhir}}" target="_blank" class="btn btn-info"><i class="fa fa-file-pdf-o"></i> Export PDF</a>
         <br>--><h3>
-        <span id="laporan">Laporan Penjualan <span id="tgl1">{{ tanggal_indonesia($awal, false) }}</span> s/d <span id="tgl2">{{ tanggal_indonesia($akhir, false) }}</span></span>
+        <span id="laporan">Laporan Laba-Rugi <span id="tgl1">{{ tanggal_indonesia($awal, false) }}</span> s/d <span id="tgl2">{{ tanggal_indonesia($akhir, false) }}</span></span>
         </h3>
       </div>
       
@@ -31,18 +32,22 @@
             <td><input id="akhir" type="text" class="form-control" name="akhir" autofocus required></td>
         </tr>
     </tbody></table><br>
-              <table id="tabellaporanjual" class="table table-striped">
+              <table id="tabellaporanlaba" class="table table-striped">
               <thead>
                 <tr>
                     <th width="5%">No</th>
                     <th width="10%">Tanggal</th>
-                    <th width="30%">Penjualan</th>
+                    <th width="30%">Laba-Rugi</th>
+                    <th width="30%">Pengeluaran</th>
+                    <th width="30%">Keuntungan</th>
                 </tr>
               </thead>
               <tbody></tbody>
               <tfoot>
                 <tr>
                 <th>Total</th>
+                <th></th>
+                <th></th>
                 <th></th>
                 <th></th>
                 </tr>
@@ -76,11 +81,11 @@ $.fn.datepicker.dates['ind'] = {
 };
 
 $(function(){    
-   table = $('#tabellaporanjual').DataTable({     
+   table = $('#tabellaporanlaba').DataTable({     
       "processing" : true,
      "serverside" : true,
      "ajax" : {
-       "url" : "laporanpenjualan/data/{{ $awal }}/{{ $akhir }}",
+       "url" : "laporanlaba/data/{{ $awal }}/{{ $akhir }}",
        "type" : "GET"
      },          
      "footerCallback": function ( row, data, start, end, display ) {
@@ -94,7 +99,7 @@ $(function(){
             };
               // Total over all pages
             total = api
-                .column( 2 )
+                .column( 2,3,4 )
                 .data()
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
@@ -107,8 +112,25 @@ $(function(){
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
                 }, 0 );
-           
+
+                pageTotal2 = api
+                .column( 3, { page: 'current'} )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+
+                pageTotal3 = api
+                .column( 4, { page: 'current'} )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+                
+                           
           $( api.column( 2 ).footer() ).html('Rp. '+currencyFormat(pageTotal));
+          $( api.column( 3 ).footer() ).html('Rp. '+currencyFormat(pageTotal2));
+          $( api.column( 4 ).footer() ).html('Rp. '+currencyFormat(pageTotal3));
             
         },
      "dom": 'Bfrtip',
@@ -121,15 +143,15 @@ $(function(){
           filename: function(){
                     var d = new Date();
                     var n = d.getTime();
-                    return 'Laporan Penjualan' + n;
+                    return 'Laporan Laba-Rugi' + n;
                 },
             exportOptions: {
-                    columns: [ 0, 1,2 ]
+                    columns: [ 0,1,2,4 ]
                 },
                 messageTop: function(){
-              var ttl = 'Laporan Penjualan '+ $('#tgl1').html() + ' s/d ' + $('#tgl2').html();
+              var ttl = 'Laporan Laba-Rugi '+ $('#tgl1').html() + ' s/d ' + $('#tgl2').html();
               return ttl
-            },       
+            },        
             messageBottom: null,
             footer: true,
         },
@@ -140,15 +162,15 @@ $(function(){
           filename: function(){
                     var d = new Date();
                     var n = d.getTime();
-                    return 'Laporan Penjualan' + n;
+                    return 'Laporan Laba-Rugi' + n;
                 },
             exportOptions: {
-                    columns: [ 0, 1,2 ]
+                columns: [ 0,1,2,4 ]
                 },
                 messageTop: function(){
-              var ttl = 'Laporan Penjualan '+ $('#tgl1').html() + ' s/d ' + $('#tgl2').html();
+              var ttl = 'Laporan Laba-Rugi '+ $('#tgl1').html() + ' s/d ' + $('#tgl2').html();
               return ttl
-            },    
+            },     
             messageBottom: null,
             footer: true,
         },
@@ -159,15 +181,15 @@ $(function(){
             filename: function(){
                       var d = new Date();
                       var n = d.getTime();
-                      return 'Laporan Penjualan' + n;
+                      return 'Laporan Laba-Rugi' + n;
                 },
             exportOptions: {
-                    columns: [ 0, 1,2 ]
+                  columns: [ 0,1,2,4 ]
                 },
                 messageTop: function(){
-              var ttl = 'Laporan Penjualan '+ $('#tgl1').html() + ' s/d ' + $('#tgl2').html();
+              var ttl = 'Laporan Laba-Rugi '+ $('#tgl1').html() + ' s/d ' + $('#tgl2').html();
               return ttl
-            },    
+            },     
             messageBottom: null,
             footer: true,
             //orientation: 'landscape',
@@ -180,10 +202,10 @@ $(function(){
             filename: function(){
                       var d = new Date();
                       var n = d.getTime();
-                      return 'Laporan Penjualan' + n;
+                      return 'Laporan Laba-Rugi' + n;
                 },
             exportOptions: {
-                    columns: [ 0, 1,2 ]
+              columns: [ 0,1,2,4 ]
                 },
             messageTop: function(){
               var ttl = $('#laporan').html();
@@ -219,7 +241,7 @@ $(function(){
             format: 'dd MM yyyy',language:'ind',
      autoclose: true});
 
-            var table = $('#tabellaporanjual').DataTable();
+            var table = $('#tabellaporanbeli').DataTable();
 
             // Event listener to the two range filtering inputs to redraw on input
               $('#awal, #akhir').change(function () {
@@ -254,7 +276,7 @@ $(function(){
   //);
  
 // $(document).ready(function() {
-//     var table = $('#tabellaporanjual').DataTable();
+//     var table = $('#tabellaporanbeli').DataTable();
      
 //     // Event listener to the two range filtering inputs to redraw on input
 //     $('#awal, #akhir').keyup( function() {

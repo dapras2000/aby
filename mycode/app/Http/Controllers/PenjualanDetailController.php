@@ -76,6 +76,8 @@ class PenjualanDetailController extends Controller
         $detail->id_penjualan_detail = Uuid::uuid4();
         $detail->id_penjualan = $request['idpenjualan'];
         $detail->kode_produk = $request['kode'];
+        $detail->harga_beli = $produk->harga_beli;
+        $detail->sub_beli = $produk->harga_beli;
         $detail->harga_jual = $produk->harga_jual;
         $detail->jumlah = 1;
         $detail->diskon = $produk->diskon;
@@ -89,11 +91,13 @@ class PenjualanDetailController extends Controller
          $idjual = $request['idpenjualan'];
          $infojual = PenjualanDetail::where('id_penjualan','=',$idjual)
          ->selectraw('sum(sub_total) as subtotal')
+         ->selectraw('sum(sub_beli) as subbeli')
          ->selectraw('sum(jumlah) as jumlah')
          ->first();
 
          $penjualan = Penjualan::find($idjual);
          $penjualan->total_item = $infojual->jumlah;
+         $penjualan->total_beli = $infojual->subbeli;
          $penjualan->total_harga = $infojual->subtotal;
          $bayar = $penjualan->total_harga - ($penjualan->diskon / 100 * $penjualan->total_harga);
          $penjualan->bayar = $bayar;
@@ -106,11 +110,13 @@ class PenjualanDetailController extends Controller
       $detail = PenjualanDetail::find($id);
       $jml1= $detail->jumlah;
 
+      
       $total_harga = $request[$nama_input] * $detail->harga_jual;
       //$detail->sub_total = $produk->harga_jual - ($produk->diskon/100 * $produk->harga_jual);
       $detail->jumlah = $request[$nama_input];
       $detail->sub_total = $total_harga - ($detail->diskon/100 * $total_harga);
-      
+      $detail->sub_beli = $request[$nama_input] * $detail->harga_beli;
+
       $detail->update();
 
       $idjual = $detail->id_penjualan;
@@ -125,11 +131,13 @@ class PenjualanDetailController extends Controller
 
       $infojual = PenjualanDetail::where('id_penjualan','=',$idjual)
          ->selectraw('sum(sub_total) as subtotal')
+         ->selectraw('sum(sub_beli) as subbeli')
          ->selectraw('sum(jumlah) as jumlah')
          ->first();
 
       $penjualan = Penjualan::find($idjual);
       $penjualan->total_item = $infojual->jumlah;
+      $penjualan->total_beli = $infojual->subbeli;
       $penjualan->total_harga = $infojual->subtotal;
       $bayar = $penjualan->total_harga - ($penjualan->diskon / 100 * $penjualan->total_harga);
       $penjualan->bayar = $bayar;

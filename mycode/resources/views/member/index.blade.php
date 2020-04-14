@@ -68,7 +68,7 @@ $(function(){
         {
           extend: 'csv',
           text : 'CSV',
-          title:'';
+          title:'',
           filename: function(){
                     var d = new Date();
                     var n = d.getTime();

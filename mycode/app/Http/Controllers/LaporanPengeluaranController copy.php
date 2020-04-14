@@ -12,7 +12,8 @@ class LaporanPembelianController extends Controller
 {
    public function index()
    {
-     $awal = date('Y-m-d', mktime(0,0,0, date('m'), 1, date('Y')));
+     //$awal = date('Y-m-d', mktime(0,0,0, date('m'), 1, date('Y')));
+     $awal = "2020-04-01";
      $akhir = date('Y-m-d');
      return view('laporan.pembelian', compact('awal', 'akhir')); 
    }

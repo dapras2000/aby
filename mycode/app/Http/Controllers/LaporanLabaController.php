@@ -13,8 +13,9 @@ class LaporanLabaController extends Controller
    public function index()
    {
      //$awal = date('Y-m-d', mktime(0,0,0, date('m'), 1, date('Y')));
-     $pembelian = Pembelian::orderby('created_at','asc')->first();
-     $awal = $pembelian->created_at;
+    //  $pembelian = Pembelian::orderby('created_at','asc')->first();
+    //  $awal = $pembelian->created_at;
+    $awal = "2020-04-01";
      $akhir = date('Y-m-d');
      return view('laporan.laba', compact('awal', 'akhir')); 
    }

@@ -13,7 +13,8 @@ class LaporanPengeluaranController extends Controller
    public function index()
    {
      //$awal = date('Y-m-d', mktime(0,0,0, date('m'), 1, date('Y')));
-     $pembelian = Pembelian::orderby('created_at','asc')->first();
+     //$pembelian = Pembelian::orderby('created_at','asc')->first();
+     $awal = "2020-04-01";
      $awal = $pembelian->created_at;
      $akhir = date('Y-m-d');
      return view('laporan.pengeluaran', compact('awal', 'akhir')); 

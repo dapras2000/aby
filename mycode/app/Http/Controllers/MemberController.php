@@ -18,7 +18,7 @@ class MemberController extends Controller
    public function listData()
    {
    
-     $member = Member::where('kode_member','<>','0')->orderBy('nama', 'asc')->get();
+     $member = Member::orderby('nama', 'asc')->get();
      $no = 0;
      $data = array();
      foreach($member as $list){

@@ -184,6 +184,7 @@ function editForm(id){
        $('#id').val(data.id_member);
        $('#kode').val(data.kode_member).attr('readonly', true);
        $('#nama').val(data.nama);
+       $('#diskon').val(data.diskon);
        $('#alamat').val(data.alamat);
        $('#telpon').val(data.telpon);
        

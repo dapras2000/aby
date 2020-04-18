@@ -121,7 +121,8 @@ class PembelianDetailController extends Controller
    public function destroy($id)
    {
       $detail = PembelianDetail::find($id);
-
+      $detail->delete();
+      
       $idbeli = $detail->id_pembelian;
       $kdproduk= $detail->kode_produk;
       $jml1= $detail->jumlah;
@@ -144,7 +145,7 @@ class PembelianDetailController extends Controller
       $pembelian->bayar = $bayar;
       $pembelian->update();
 
-      $detail->delete();
+      
    }
 
    public function loadForm($diskon, $total){

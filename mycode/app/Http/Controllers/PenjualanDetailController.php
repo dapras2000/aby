@@ -147,6 +147,7 @@ class PenjualanDetailController extends Controller
    public function destroy($id)
    {
       $detail = PenjualanDetail::find($id);
+      $detail->delete();
 
       $idjual = $detail->id_penjualan;
       $kdproduk= $detail->kode_produk;
@@ -170,7 +171,7 @@ class PenjualanDetailController extends Controller
       $penjualan->bayar = $bayar;
       $penjualan->update();
 
-      $detail->delete();
+      
    }
 
    public function newSession()

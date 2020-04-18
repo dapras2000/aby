@@ -128,7 +128,7 @@
         <li><a href="{{ route('supplier.index') }}"><i class="fa fa-truck"></i> <span>Supplier</span></a></li>
         <li><a href="{{ route('pengeluaran.index') }}"><i class="fa fa-money"></i> <span>Pengeluaran</span></a></li>
         <li><a href="{{ route('pembelian.index') }}"><i class="fa fa-download"></i> <span>Pembelian</span></a></li>
-        <li><a href="{{ route('penjualan.index') }}"><i class="fa fa-upload"></i> <span>Penjualan</span></a></li>
+        <li><a href="{{ route('penjualan.index') }}"><i class="fa fa-upload"></i> <span>Rekap Penjualan</span></a></li>
         
         <li class="treeview">
           <a href="#">

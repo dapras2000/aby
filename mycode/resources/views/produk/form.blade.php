@@ -57,11 +57,10 @@
       <span class="help-block with-errors"></span>
     </div>
   </div>
-
   <div class="form-group">
-    <label for="diskon" class="col-md-3 control-label">Diskon</label>
-    <div class="col-md-2">
-      <input id="diskon" type="text" class="form-control" name="diskon" required>
+    <label for="harga_beli" class="col-md-3 control-label">Margin Jual (%)</label>
+    <div class="col-md-3">
+      <input id="margin" type="number" class="form-control" name="margin" value="0" required>
       <span class="help-block with-errors"></span>
     </div>
   </div>
@@ -74,6 +73,14 @@
     </div>
   </div>
 
+  <div class="form-group">
+    <label for="diskon" class="col-md-3 control-label">Diskon (%)</label>
+    <div class="col-md-2">
+      <input id="diskon" type="text" class="form-control" name="diskon" value="0" required>
+      <span class="help-block with-errors"></span>
+    </div>
+  </div>
+  
   <div class="form-group">
     <label for="stok" class="col-md-3 control-label">Stok</label>
     <div class="col-md-2">

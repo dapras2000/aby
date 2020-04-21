@@ -92,6 +92,24 @@
         </div>
       </div>
 
+      <div class="form-group">
+        <label for="kategori" class="col-md-4 control-label">Lunas</label>
+        <div class="col-md-8">
+          <select id="lunas" type="text" class="form-control" name="lunas" required>
+            
+          </select>
+          <span class="help-block with-errors"></span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="bayarrp" class="col-md-4 control-label">Keterangan</label>
+        <div class="col-md-8">
+        <textarea class="form-control" id="keterangan" name="keterangan"></textarea>
+        </div>
+      </div>
+      
+
     </form>
   </div>
 
@@ -146,6 +164,32 @@ $(function(){
       //alert(diskon+"-"+id);
       $.ajax({
           url : "pembelian_detail/diskon/"+id+"/"+diskon,
+          type : "GET",
+      });
+   });
+
+   $('#lunas').change(function(){
+      // if($(this).val() == "") $(this).val(0).select();
+      // loadForm($(this).val());
+
+      var lunas = $(this).val();
+      var id = $('#idpembelian').val();
+      //alert(diskon+"-"+id);
+      $.ajax({
+          url : "pembelian_detail/lunas/"+id+"/"+lunas,
+          type : "GET",
+      });
+   });
+
+   $('#keterangan').change(function(){
+      // if($(this).val() == "") $(this).val(0).select();
+      // loadForm($(this).val());
+
+      var keterangan = $(this).val();
+      var id = $('#idpembelian').val();
+      //alert(diskon+"-"+id);
+      $.ajax({
+          url : "pembelian_detail/keterangan/"+id+"/"+keterangan,
           type : "GET",
       });
    });
@@ -221,8 +265,17 @@ function deleteItem(id){
 function loadForm(diskon=0){
   $('#total').val($('.total').text());
   $('#totalitem').val($('.totalitem').text());
-  //$('#diskon2').val($('.diskon').text());  
-  //$('#diskon').val($('.diskon').text());  
+  document.getElementById("keterangan").value = $('.keterangan').text();
+            $("#lunas").empty();
+            //var jml = (data.cates).length;
+                var pilih='selected';
+                if ($('.lunas').text() == 'Lunas'){                                        
+                    $("#lunas").append("<option value='Lunas'"+ pilih +" >Lunas</option>");
+                    $("#lunas").append("<option value='Belum'>Belum</option>");
+                }else{                    
+                    $("#lunas").append("<option value='Lunas'>Lunas</option>");
+                    $("#lunas").append("<option value='Belum'"+ pilih +" >Belum</option>");                    
+                } 
   var diskon = $('#diskon').val();
   // $('#totalrp').val("Rp. "+$('.total').text());
   // $('#bayarrp').val("Rp. "+$('.bayar').text());

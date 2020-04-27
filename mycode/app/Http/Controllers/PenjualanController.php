@@ -45,7 +45,8 @@ class PenjualanController extends Controller
        $row[] = "Rp. ".format_uang($list->total_harga);
        $row[] = $list->diskon."%";
        $row[] = "Rp. ".format_uang($list->bayar);
-       $row[] = $list->name;
+       $row[] = $list->lunas;
+       $row[] = $list->name;       
        $row[] = '<div class="btn-group">        
                <a onclick="showDetail(\''.$list->id_penjualan.'\')" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></a>
                <a href="penjualansession/'.$list->id_penjualan.'" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>

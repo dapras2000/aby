@@ -53,6 +53,8 @@ Route::group(['middleware'=>'auth'],function(){
         Route::resource('pembelian_detail', 'PembelianDetailController'); 
         Route::get('pembeliandetail/{id}', 'PembelianDetailController@index');
         Route::get('pembelian_detail/diskon/{id}/{diskon}', 'PembelianDetailController@diskon');
+        Route::get('pembelian_detail/lunas/{id}/{lunas}', 'PembelianDetailController@lunas');
+        Route::get('pembelian_detail/keterangan/{id}/{keterangan}', 'PembelianDetailController@keterangan');
         
         Route::get('penjualan/data', 'PenjualanController@listData')->name('penjualan.data');
         Route::get('penjualan/{id}/lihat', 'PenjualanController@show');
@@ -76,6 +78,8 @@ Route::group(['middleware'=>'auth'],function(){
         Route::get('transaksi/loadform/{diskon}/{total}/{diterima}', 'PenjualanDetailController@loadForm');
         Route::resource('transaksi', 'PenjualanDetailController');
         Route::get('transaksi/diskon/{id}/{diskon}/{kodemember}', 'PenjualanDetailController@diskon');
+        Route::get('transaksi/lunas/{id}/{lunas}', 'PenjualanDetailController@lunas');
+        Route::get('transaksi/keterangan/{id}/{keterangan}', 'PenjualanDetailController@keterangan');
 
         Route::get('laporan', 'LaporanController@index')->name('laporan.index');
         Route::post('laporan', 'LaporanController@refresh')->name('laporan.refresh');

@@ -25,6 +25,7 @@
       <th width="8%">Total Harga</th>
       <th width="5%">Diskon</th>
       <th width="10%">Total Bayar</th>
+      <th width="10%">Lunas</th>
       <th width="10%">Kasir</th>
       <th width="10%">Aksi</th>
    </tr>

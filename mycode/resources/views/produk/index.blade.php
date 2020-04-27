@@ -191,6 +191,7 @@ function editForm(id){
        $('#kategori').val(data.id_kategori);
        $('#merk').val(data.merk);
        $('#harga_beli').val(data.harga_beli);
+       $('#margin').val(data.margin);
        $('#diskon').val(data.diskon);
        $('#harga_jual').val(data.harga_jual);
        $('#stok').val(data.stok);
@@ -243,5 +244,25 @@ function printBarcode(){
     $('#form-produk').attr('target', '_blank').attr('action', "produk/cetak").submit();
   }
 }
+
+$('#margin').change(function(){
+      if($(this).val() == "") $(this).val(0).select();
+
+      var margin = $(this).val();
+      var beli = $('#harga_beli').val();
+      var jual = parseInt(beli) + ((margin*beli)/100);
+      $('#harga_jual').val(jual);
+});
+
+$('#harga_beli').change(function(){
+      if($(this).val() == "") $(this).val(0).select();
+
+      var beli = $(this).val();
+      var margin = $('#margin').val();
+      if(margin == ""){margin=0;}
+      var jual = parseInt(beli) + ((margin*beli)/100);
+      $('#harga_jual').val(jual);
+});
+
 </script>
 @endsection

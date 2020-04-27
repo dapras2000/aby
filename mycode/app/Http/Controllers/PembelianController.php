@@ -42,6 +42,7 @@ class PembelianController extends Controller
        $row[] = "Rp. ".format_uang($list->total_harga);
        $row[] = $list->diskon."%";
        $row[] = "Rp. ".format_uang($list->bayar);
+       $row[] = $list->lunas;
        $row[] = '<div class="btn-group">
                <a onclick="showDetail(\''.$list->id_pembelian.'\')" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></a>
                <a href="pembeliansession/'.$list->id_pembelian.'" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>

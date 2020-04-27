@@ -84,6 +84,22 @@
           </div>
         </div>
       </div>     
+      <div class="form-group">
+        <label for="kategori" class="col-md-4 control-label">Lunas</label>
+        <div class="col-md-8">
+          <select id="lunas" type="text" class="form-control" name="lunas" required>
+            
+          </select>
+          <span class="help-block with-errors"></span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="bayarrp" class="col-md-4 control-label">Keterangan</label>
+        <div class="col-md-8">
+        <textarea class="form-control" id="keterangan" name="keterangan"></textarea>
+        </div>
+      </div>
 
       <div class="form-group">
         <label for="diskon" class="col-md-4 control-label">Diskon</label>
@@ -169,6 +185,28 @@ $(function(){
       
    }).focus(function(){
       $(this).select();
+   });
+
+   $('#lunas').change(function(){
+
+      var lunas = $(this).val();
+      var id = $('#idpenjualan').val();
+      //alert(diskon+"-"+id);
+      $.ajax({
+          url : "transaksi/lunas/"+id+"/"+lunas,
+          type : "GET",
+      });
+   });
+
+   $('#keterangan').change(function(){
+
+      var keterangan = $(this).val();
+      var id = $('#idpenjualan').val();
+      //alert(diskonidpenjualanid);
+      $.ajax({
+          url : "transaksi/keterangan/"+id+"/"+keterangan,
+          type : "GET",
+      });
    });
 
    $('.simpan').click(function(){
@@ -265,6 +303,17 @@ function loadForm(diskon=0, diterima=0){
   $('#total').val($('.total').text());
   $('#totalitem').val($('.totalitem').text());
   $('#nama_member').val($('.namamember').text());
+  document.getElementById("keterangan").value = $('.keterangan').text();
+            $("#lunas").empty();
+            //var jml = (data.cates).length;
+                var pilih='selected';
+                if ($('.lunas').text() == 'Lunas'){                                        
+                    $("#lunas").append("<option value='Lunas'"+ pilih +" >Lunas</option>");
+                    $("#lunas").append("<option value='Belum'>Belum</option>");
+                }else{                    
+                    $("#lunas").append("<option value='Lunas'>Lunas</option>");
+                    $("#lunas").append("<option value='Belum'"+ pilih +" >Belum</option>");                    
+                } 
 
   var diskon = $('#diskon').val();
 

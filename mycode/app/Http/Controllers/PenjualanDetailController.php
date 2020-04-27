@@ -59,10 +59,14 @@ class PenjualanDetailController extends Controller
 
      $datajual = Penjualan::find($id);
      $diskon = $datajual->diskon;
+     $lunas = $datajual->lunas;
+     $keterangan = $datajual->keterangan;
      $kdmember = $datajual->kode_member;
      $member = Member::where('kode_member','=',$kdmember)->first();
      $namamember = $member->nama;
-     $data[] = array("<span class='hide total'>$total</span><span class='hide totalitem'>$total_item</span><span class='hide diskon'>$diskon</span><span class='hide namamember'>$namamember</span>", "", "", "", "", "", "", "");
+     $data[] = array("<span class='hide total'>$total</span><span class='hide totalitem'>$total_item</span><span class='hide diskon'>$diskon</span><span class='hide namamember'>$namamember</span>", 
+     "<span class='hide lunas'>$lunas</span>", 
+     "<span class='hide keterangan'>$keterangan</span>", "", "", "", "", "");
     
      $output = array("data" => $data);
      return response()->json($output);
@@ -147,6 +151,7 @@ class PenjualanDetailController extends Controller
    public function destroy($id)
    {
       $detail = PenjualanDetail::find($id);
+      $detail->delete();
 
       $idjual = $detail->id_penjualan;
       $kdproduk= $detail->kode_produk;
@@ -170,7 +175,7 @@ class PenjualanDetailController extends Controller
       $penjualan->bayar = $bayar;
       $penjualan->update();
 
-      $detail->delete();
+      
    }
 
    public function newSession()
@@ -349,5 +354,17 @@ class PenjualanDetailController extends Controller
       $penjualan->diskon = $diskon;
       $penjualan->kode_member = $kode;
       $penjualan->update();
+      
+    }
+
+    public function lunas($id,$lunas){     
+      $pembelian = Penjualan::find($id);
+      $pembelian->lunas = $lunas;
+      $pembelian->update();
+    }
+    public function keterangan($id,$keterangan){     
+      $pembelian = Penjualan::find($id);
+      $pembelian->keterangan = $keterangan;
+      $pembelian->update();
     }
 }

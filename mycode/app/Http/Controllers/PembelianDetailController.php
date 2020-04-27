@@ -46,7 +46,11 @@ class PembelianDetailController extends Controller
      }
      $databeli = Pembelian::find($id);
      $diskon = $databeli->diskon;
-     $data[] = array("<span class='hide total'>$total</span><span class='hide totalitem'>$total_item</span><span class='hide diskon'>$diskon</span>", "", "", "", "", "", "");
+     $lunas = $databeli->lunas;
+     $keterangan = $databeli->keterangan;
+     $data[] = array("<span class='hide total'>$total</span><span class='hide totalitem'>$total_item</span><span class='hide diskon'>$diskon</span>",
+      "<span class='hide lunas'>$lunas</span><span class='hide totalitem'>", 
+      "<span class='hide keterangan'>$keterangan</span><span class='hide totalitem'>", "", "", "", "");
       
      $output = array("data" => $data);
      return response()->json($output);
@@ -121,7 +125,8 @@ class PembelianDetailController extends Controller
    public function destroy($id)
    {
       $detail = PembelianDetail::find($id);
-
+      $detail->delete();
+      
       $idbeli = $detail->id_pembelian;
       $kdproduk= $detail->kode_produk;
       $jml1= $detail->jumlah;
@@ -144,7 +149,7 @@ class PembelianDetailController extends Controller
       $pembelian->bayar = $bayar;
       $pembelian->update();
 
-      $detail->delete();
+      
    }
 
    public function loadForm($diskon, $total){
@@ -165,6 +170,17 @@ class PembelianDetailController extends Controller
       $bayar = $total - ($diskon / 100 * $total);
       $pembelian->bayar = $bayar;
       $pembelian->diskon = $diskon;
+      $pembelian->update();
+    }
+
+    public function lunas($id,$lunas){     
+      $pembelian = Pembelian::find($id);
+      $pembelian->lunas = $lunas;
+      $pembelian->update();
+    }
+    public function keterangan($id,$keterangan){     
+      $pembelian = Pembelian::find($id);
+      $pembelian->keterangan = $keterangan;
       $pembelian->update();
     }
 }

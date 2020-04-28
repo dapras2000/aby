@@ -3,13 +3,8 @@
 <head>
    <title>Nota Penjualan {{ $setting->nama_perusahaan }}</title>
    <style type="text/css">
-      table td{font: arial 6px;}
-      table.data td,
-      table.data th{
-         border: 0px solid #ccc;
-         padding: 3px;
-         font-weight : thin;
-      }
+      table td th{font-family: Georgia, 'Times New Roman'; font-size: 12px;}
+      table.data td,      
       table.data th{
          text-align: center;
       }
@@ -17,7 +12,7 @@
       table.tableatas tr{ vertical-align: top; }
    </style>
    <style>
-    @page { size: 15cm 20cm landscape; margin-top: -3px;}
+    @page { size: 15cm 20cm landscape;}
   </style>
 </head>
 <body>
@@ -39,7 +34,7 @@
   </tr>
 </table>
          <br>
-<table width="100%" class="data">
+<table width="100%" class="data" border="1">
 <thead>
    <tr>
     <th>No</th>
@@ -50,7 +45,7 @@
     <th>Subtotal</th>
    </tr>
 
-   <tbody>
+   <tbody border="1">
     @foreach($detail as $data)
       
     <tr>
@@ -66,7 +61,7 @@
    </tbody>
    <tfoot>
     <tr><td colspan="5" align="right">&nbsp;</tr>
-    <tr><td colspan="5" align="right">Total Harga</td><td align="right">{{ format_uang($penjualan->total_harga) }}</td></tr>
+    <tr><td colspan="5" align="right">Total Harga</td><td align="right"  border="1">{{ format_uang($penjualan->total_harga) }}</td></tr>
     <tr><td colspan="5" align="right">Diskon</td><td align="right">{{ format_uang($penjualan->diskon) }}%</td></tr>
     <tr><td colspan="5" align="right">Total Bayar</td><td align="right">{{ format_uang($penjualan->bayar) }}</td></tr>    
    </tfoot>

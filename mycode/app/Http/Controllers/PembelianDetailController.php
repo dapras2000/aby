@@ -23,7 +23,8 @@ class PembelianDetailController extends Controller
    {
    
      $detail = PembelianDetail::leftJoin('produk', 'produk.kode_produk', '=', 'pembelian_detail.kode_produk')
-        ->where('id_pembelian', '=', $id)
+        ->where('pembelian_detail.id_pembelian', '=', $id)
+        ->orderBy('pembelian_detail.created_at','desc')
         ->get();
      $no = 0;
      $data = array();

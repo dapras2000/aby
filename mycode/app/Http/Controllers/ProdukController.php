@@ -81,6 +81,7 @@ class ProdukController extends Controller
     {
         $produk = Produk::find($id);
         $produk->nama_produk    = $request['nama'];
+        $produk->kode_produk     = $request['kode'];
         $produk->id_kategori    = $request['kategori'];
         $produk->merk          = $request['merk'];
         $produk->harga_beli      = $request['harga_beli'];

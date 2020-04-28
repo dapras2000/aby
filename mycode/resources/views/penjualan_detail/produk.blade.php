@@ -13,7 +13,7 @@
 		   <tr>
 		      <th>Kode Produk</th>
 		      <th>Nama Produk</th>
-		      <th>Harga Beli</th>
+		      <th>Harga Jual</th>
 		      <th>Aksi</th>
 		   </tr>
 		</thead>

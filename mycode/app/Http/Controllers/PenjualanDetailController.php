@@ -32,7 +32,8 @@ class PenjualanDetailController extends Controller
    {
    
      $detail = PenjualanDetail::leftJoin('produk', 'produk.kode_produk', '=', 'penjualan_detail.kode_produk')
-        ->where('id_penjualan', '=', $id)
+        ->where('penjualan_detail.id_penjualan', '=', $id)
+        ->orderBy('penjualan_detail.created_at','desc')
         ->get(['produk.*','penjualan_detail.*', 'penjualan_detail.harga_jual as jualdetail']);
      $no = 0;
      $data = array();

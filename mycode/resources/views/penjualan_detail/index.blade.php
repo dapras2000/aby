@@ -148,7 +148,7 @@
 <script type="text/javascript">
 var table;
 $(function(){
-  $('.tabel-produkdet').DataTable();
+  $('#tabel-produkdet').DataTable();
 
   table = $('#tabel-penjualandet').DataTable({
      "bSort" : false,
